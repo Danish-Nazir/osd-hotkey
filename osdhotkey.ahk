@@ -26,7 +26,9 @@ MouseRight := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_C
 MouseMiddle := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_CLick.png"
 Scroll := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
 
-mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Mouse_Idle.png"
+idleMouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Mouse_Idle.png"
+
+global currentMouseImage := idleMouseImage
 
 IniRead, class, colors.ini, class, c
 
@@ -91,7 +93,7 @@ OnExit, ExitSub
 #Include FontPicker.ahk
 return
 
-
+																			;FUNCTIONS FOR WINDOW MOVING
 
 winmove()
 {
@@ -131,7 +133,7 @@ getwininfo()
 		Return
 	}
 
-
+																			;SELECT BACKGROUND COLOR
 
 select_background_color:
 	color:=ColorPicker()
@@ -164,6 +166,8 @@ select_text_color:
 	IniWrite, %color%, colors.ini, colors, text
 return
 
+																			;SAVE MOUSE POSTION
+
 ExitSub:
 	WinGetPos , x, y, w, h, OSD hotkey
 	IniWrite, %x%, colors.ini, positions, x
@@ -173,6 +177,7 @@ ExitSub:
 	exitapp
 return
 
+																			;ENABLE AND DISABLE APP
 
 enable_disable:
 Suspend
@@ -188,6 +193,8 @@ else
 		Gui, show
 	}
 return
+
+																			;CLASS CONTROL AND SELECTION
 
 class_control:
 Menu, Tray, ToggleCheck, Class control
@@ -213,10 +220,15 @@ return
 
 
 
+																			;--------------MOUSE BUTTON PRESS FUNCTIONS--------------------
+
+
 ~LButton::
 	osdText=MouseLeft
 	updateOSD(osdText)
-	ShowImage(MouseLeft)
+
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
+	ChangeMouseImage(mouseImage)
 return
 
 
@@ -226,15 +238,17 @@ return
 		return
 	osdText=%osdText%MouseLeft
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
-	ShowImage(MouseLeft)
+
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
+	ChangeMouseImage(mouseImage)
 return
 
 ~RButton::
 	osdText=MouseRight
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
-	ShowImage(MouseRight)
+
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
+	ChangeMouseImage(mouseImage)
 return
 
 ~*RButton::
@@ -242,32 +256,36 @@ return
 		return
 	osdText=%osdText%MouseRight
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
-	ShowImage(MouseRight)
+	
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
+	ChangeMouseImage(mouseImage)
 	
 return
 
 ~MButton::
 	osdText=MouseMiddle
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
-	ShowImage(MiddleRight)
-return
+	
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
+	ChangeMouseImage(mouseImage)
+	return
 
 ~*MButton::
 	IfInString, osdText, MouseMiddle
 		return
 	osdText=%osdText%MouseMiddle
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
-ShowImage(MiddleRight)
+
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
+	ChangeMouseImage(mouseImage)
 return
 
 ~WheelUp::
 	osdText=MouseWheelUp
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-ShowImage(Scroll)
+	
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	ChangeMouseImage(mouseImage)
 return
 
 ~*WheelUp::
@@ -275,58 +293,91 @@ return
 		return
 	osdText=%osdText%MouseWheelUp
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-ShowImage(Scroll)
+	
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	ChangeMouseImage(mouseImage)
 return
 
 ~WheelDown::
 	osdText=MouseWheelDown
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-ShowImage(Scroll)
+	
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	ChangeMouseImage(mouseImage)
 return
 ~*WheelDown::
 	IfInString, osdText, MouseWheelDown
 		return
 	osdText=%osdText%MouseWheelDown
 	updateOSD(osdText)
-	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	ShowImage(Scroll)
+	
+	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	ChangeMouseImage(mouseImage)
 return
+
+
+
+																			;--------------MOUSE BUTTON PRESS FUNCTIONS ENDED------------------
+
+
+
+
+
+
+
+																			;---------------------MOUSE HOLDED FUNCTIONS
 
 mouseHolded:
 	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
 		{
+
 			if(!InStr(osdText,"(hold)"))
 				osdText=%osdText%(hold)
 			updateOSD(osdText)
-			SetTimer, HideImage, off
-			Gui, Show
+
+			ShowMouseImage()
+			;Gui, Show
+		}
+		else
+		{
+		GuiControl,, mouseImage, %currentMouseImage%
+		Gui, Show
 		}
 	
 return
 
+ChangeMouseImage(mouseImage){
+	
+	currentMouseImage := mouseImage
+
+}
+
+ShowMouseImage(){
+	
+	GuiControl,, mouseImage, %currentMouseImage%
+	;Gui, Show
+
+}
+
+
 ShowImage(imagePath) {
-    global
+    global 
     if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
 		{
     ; Update the GUI with the selected image and button text
     GuiControl,, mouseImage, %imagePath%
-    SetTimer, HideImage, off
-		Gui, Show
+    ;SetTimer, HideImage, off
+		;Gui, Show
 		}
 		else{
 		; Update the GUI with the selected image and button text
     GuiControl,, mouseImage, %imagePath%
 		Gui, Show
  		; Hide the image and text after 2.5 seconds
-    SetTimer, HideImage, 1000
+    ;SetTimer, HideImage, 2500
 		}
     }
 
-HideImage() {
-    GuiControl,, mouseImage  ; Clear the image from the GUI
-    }
 
 GuiSize:
 	GuiControl, Move, MyText, % "w" A_GuiWidth - 10
@@ -347,12 +398,15 @@ updateOSD(string)
 			{
 				IfWinActive, ahk_class %class%
 					GuiControl,, MyText, %osdText%
-					GuiControl,, MyImage, %imagePath%
-					HideImage() 
+					GuiControl,, mouseImage, %currentMouseImage%
+					;Gui, Show
+					;HideImage() 
 
 			}
 		else
 			GuiControl,, MyText, %osdText%
+			;GuiControl,, mouseImage, %idleMouseImage%
+			;Gui, Show
 		SetTimer,unshowOSD,2500
 		
 		
@@ -364,7 +418,10 @@ updateOSD(string)
 
 hs:
 	GuiControl,, MyText, %A_Space%
-	GuiControl,, MyImage  ; Clear the image from the GUI
+	;if(mouseImage != idleMouseImage){
+	GuiControl,, mouseImage  ; Clear the image from the GUI
+	;}
+	
 return
 
 
