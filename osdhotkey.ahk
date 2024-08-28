@@ -61,6 +61,92 @@ IniRead, unshowTime, colors.ini, times, timeToHide, 2000
 ;Gui, show, NA x%x% y%y% w%w% h%h%, OSD hotkey
 Gui, +Resize
 
+;--------------ADDING KEYBOARD KEYS AGAIN TO EXPERIMENT--------------------
+
+
+singleHotkey=1234567890qwertyuiopasdfghjklzxcvbnm
+StringSplit, char, singleHotkey
+Loop, %char0%
+	{
+		currentChar := char%A_Index%
+		Hotkey, ~%currentChar%, hks_label
+		Hotkey, ~*%currentChar%, hks_label2
+	}
+numpadHotkey=0123456789
+StringSplit, char, numpadHotkey
+Loop, %char0%
+	{
+		currentChar := char%A_Index%
+		Hotkey, ~NumPad%currentChar%, hk_label
+		Hotkey, ~*NumPad%currentChar%, hk_label2
+	}
+;functionKey
+Loop, 12
+	{
+		Hotkey, ~F%A_Index%, hk_label
+		Hotkey, ~*F%A_Index%, hk_label2
+	}
+
+Hotkey, ~NumpadDel, hk_label
+Hotkey, ~*NumpadDel, hk_label2
+Hotkey, ~NumpadIns, hk_label
+Hotkey, ~*NumpadIns, hk_label2
+Hotkey, ~NumpadClear, hk_label
+Hotkey, ~*NumpadClear, hk_label2
+Hotkey, ~NumpadUp, hk_label
+Hotkey, ~*NumpadUp, hk_label2
+Hotkey, ~NumpadDown, hk_label
+Hotkey, ~*NumpadDown, hk_label2
+Hotkey, ~NumpadLeft, hk_label
+Hotkey, ~*NumpadLeft, hk_label2
+Hotkey, ~NumpadRight, hk_label
+Hotkey, ~*NumpadRight, hk_label2
+Hotkey, ~NumpadHome, hk_label
+Hotkey, ~*NumpadHome, hk_label2
+Hotkey, ~NumpadEnd, hk_label
+Hotkey, ~*NumpadEnd, hk_label2
+Hotkey, ~NumpadPgUp, hk_label
+Hotkey, ~*NumpadPgUp, hk_label2
+Hotkey, ~NumpadPgDn, hk_label
+Hotkey, ~*NumpadPgDn, hk_label2
+Hotkey, ~NumpadDot, hk_label
+Hotkey, ~*NumpadDot, hk_label2
+
+Hotkey, ~Space, hk_space
+Hotkey, ~*Space, hks_label2
+Hotkey, ~Tab, hk_label
+Hotkey, ~*Tab, hk_label2
+Hotkey, ~Enter, hk_label
+Hotkey, ~*Enter, hk_label2
+Hotkey, ~Esc, hk_label
+Hotkey, ~*Esc, hk_label2
+Hotkey, ~Backspace, hk_label
+Hotkey, ~*Backspace, hk_label2
+Hotkey, ~Del, hks_label
+Hotkey, ~*Del, hks_label2
+Hotkey, ~Ins, hk_label
+Hotkey, ~*Ins, hk_label2
+Hotkey, ~Home, hk_label
+Hotkey, ~*Home, hk_label2
+Hotkey, ~End, hk_label
+Hotkey, ~*End, hk_label2
+Hotkey, ~PgUp, hks_label
+Hotkey, ~*PgUp, hks_label2
+Hotkey, ~PgDn, hks_label
+Hotkey, ~*PgDn, hks_label2
+Hotkey, ~Up, hks_label
+Hotkey, ~*Up, hks_label2
+Hotkey, ~Down, hks_label
+Hotkey, ~*Down, hks_label2
+Hotkey, ~Left, hks_label
+Hotkey, ~*Left, hks_label2
+Hotkey, ~Right, hks_label
+Hotkey, ~*Right, hks_label2
+
+
+;--------------ENDED ADDING KEYBOARD KEYS AGAIN TO EXPERIMENT--------------------
+
+
 
 
 Menu,tray,Icon,icons\enable.ico,,1
@@ -218,6 +304,65 @@ return
 
 
 
+;--------------ENDED ADDING KEYBOARD KEYS AGAIN TO EXPERIMENT--------------------
+
+
+
+~CTRL::
+	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
+		return
+	osdText=CTRL+
+	updateOSD(osdText)
+return
+~ALT::
+	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
+		return
+	osdText=ALT+
+	updateOSD(osdText)
+return
+~LWIN::
+	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
+		return
+	osdText=WIN+
+	updateOSD(osdText)
+return
+~SHIFT::
+	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
+		return
+	osdText=SHIFT+
+	updateOSD(osdText)
+return
+~*CTRL::
+	IfInString, osdText, CTRL
+		return
+	osdText=%osdText%CTRL+
+	updateOSD(osdText)
+return
+~*ALT::
+	IfInString, osdText, ALT
+		return
+	osdText=%osdText%ALT+
+	updateOSD(osdText)
+return
+~*LWIN::
+	IfInString, osdText, WIN
+		return
+	osdText=%osdText%WIN+
+	updateOSD(osdText)
+return
+~*SHIFT::
+	IfInString, osdText, SHIFT
+		return
+	osdText=%osdText%SHIFT+
+	updateOSD(osdText)
+return
+
+
+
+;--------------ENDED ADDING KEYBOARD KEYS AGAIN TO EXPERIMENT--------------------
+
+
+
 																			;--------------MOUSE BUTTON PRESS FUNCTIONS--------------------
 
 
@@ -318,6 +463,8 @@ return
 																			/*
 																			Danish's TODOs:
 																			
+																			- scroll button up icon should seperate from scroll down-
+																			- put all images in folder and repath them-
 																			- Scroll button image are smaller than other images
 																			- resize gui to the images below text
 																			- Transparent
