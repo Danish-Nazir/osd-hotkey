@@ -45,7 +45,7 @@ gui, font,c%col_t% %style_t%, %font_t%
 
 ;Gui, Color, EEAA99 150
 Gui, Add, Text, BackgroundTrans vMyText x5 y5 w290
-Gui, Add, Picture, ,mouseImage  ; Image control
+Gui, Add, Picture, ,mouseImage  ; Image control ; Danish - gui add picture
 
 
 Gui, -Caption
@@ -53,7 +53,7 @@ Gui, +AlwaysOnTop
 IniRead, x, colors.ini, positions, x, 200 
 IniRead, y, colors.ini, positions, y, 200
 IniRead, w, colors.ini, positions, w, 300
-IniRead, h, colors.ini, positions, h, 50
+IniRead, h, colors.ini, positions, h, 350
 
 IniRead, unshowTime, colors.ini, times, timeToHide, 2000
 
@@ -225,7 +225,7 @@ return
 	osdText=MouseLeft
 	updateOSD(osdText)
 
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
+	mouseImage := A_ScriptDir . "\icons\Left_Click.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -235,7 +235,7 @@ return
 	osdText=%osdText%MouseLeft
 	updateOSD(osdText)
 
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
+	mouseImage := A_ScriptDir . "\icons\Left_Click.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -243,7 +243,7 @@ return
 	osdText=MouseRight
 	updateOSD(osdText)
 
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
+	mouseImage := A_ScriptDir . "\icons\Right_Click.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -253,7 +253,7 @@ return
 	osdText=%osdText%MouseRight
 	updateOSD(osdText)
 	
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
+	mouseImage := A_ScriptDir . "\icons\Right_Click.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -261,7 +261,7 @@ return
 	osdText=MouseMiddle
 	updateOSD(osdText)
 	
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
+	mouseImage := A_ScriptDir . "\icons\Middle_Click.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -271,7 +271,7 @@ return
 	osdText=%osdText%MouseMiddle
 	updateOSD(osdText)
 
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
+	mouseImage := A_ScriptDir . "\icons\Middle_Click.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -279,7 +279,7 @@ return
 	osdText=MouseWheelUp
 	updateOSD(osdText)
 	
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	mouseImage := A_ScriptDir . "\icons\Scroll_Up.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -289,7 +289,7 @@ return
 	osdText=%osdText%MouseWheelUp
 	updateOSD(osdText)
 	
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	mouseImage := A_ScriptDir . "\icons\Scroll_Up.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -297,7 +297,7 @@ return
 	osdText=MouseWheelDown
 	updateOSD(osdText)
 	
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	mouseImage := A_ScriptDir . "\icons\Scroll_Down.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -307,7 +307,7 @@ return
 	osdText=%osdText%MouseWheelDown
 	updateOSD(osdText)
 	
-	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	mouseImage := A_ScriptDir . "\icons\Scroll_Down.png"
 	ShowMouseImage(mouseImage)
 return
 
@@ -318,8 +318,6 @@ return
 																			/*
 																			Danish's TODOs:
 																			
-																			- scroll button up icon should seperate from scroll down
-																			- put all images in folder and repath them
 																			- Scroll button image are smaller than other images
 																			- resize gui to the images below text
 																			- Transparent
