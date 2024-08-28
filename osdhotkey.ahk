@@ -20,15 +20,13 @@ font=Arial
 style=bold
 color=black
 
+
 ; Define image paths
 MouseLeft := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_CLick.png"
 MouseRight := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_CLick.png"
 MouseMiddle := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_CLick.png"
 Scroll := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-
 idleMouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Mouse_Idle.png"
-
-global currentMouseImage := idleMouseImage
 
 IniRead, class, colors.ini, class, c
 
@@ -228,11 +226,8 @@ return
 	updateOSD(osdText)
 
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
 return
-
-
 
 ~*LButton::
 	IfInString, osdText, MouseLeft
@@ -241,7 +236,6 @@ return
 	updateOSD(osdText)
 
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
 return
 
@@ -250,7 +244,6 @@ return
 	updateOSD(osdText)
 
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
 return
 
@@ -261,9 +254,7 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
-	
 return
 
 ~MButton::
@@ -271,9 +262,8 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
-	return
+return
 
 ~*MButton::
 	IfInString, osdText, MouseMiddle
@@ -282,7 +272,6 @@ return
 	updateOSD(osdText)
 
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
 return
 
@@ -291,7 +280,6 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
 return
 
@@ -302,7 +290,6 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
 return
 
@@ -311,9 +298,9 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
 return
+
 ~*WheelDown::
 	IfInString, osdText, MouseWheelDown
 		return
@@ -321,7 +308,6 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	;ChangeMouseImage(mouseImage)
 	ShowMouseImage(mouseImage)
 return
 
@@ -329,8 +315,18 @@ return
 
 																			;--------------MOUSE BUTTON PRESS FUNCTIONS ENDED------------------
 
+																			/*
+																			Danish's TODOs:
+																			
+																			- scroll button up icon should seperate from scroll down
+																			- put all images in folder and repath them
+																			- Scroll button image are smaller than other images
+																			- resize gui to the images below text
+																			- Transparent
+																			- [add idle mouse image as a placeholder]
 
-
+																			*/
+																			
 
 
 
@@ -344,49 +340,15 @@ mouseHolded:
 			if(!InStr(osdText,"(hold)"))
 				osdText=%osdText%(hold)
 			updateOSD(osdText)
-
-			;ShowMouseImage()
-			;Gui, Show
 		}
-		;else
-		;{
-		;GuiControl,, mouseImage, %currentMouseImage%
-		;Gui, Show
-		;}
-	
+
 return
 
-ChangeMouseImage(mouseImage){
-	
-	currentMouseImage := mouseImage
-
-}
-
+; Danish - Adding this function to be called when a mouse button is pressed. 
 ShowMouseImage(mouseImage){
-	
 	GuiControl,, mouseImage, %mouseImage%
 	Gui, Show
-
-}
-
-
-ShowImage(imagePath) {
-    global 
-    if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
-		{
-    ; Update the GUI with the selected image and button text
-    GuiControl,, mouseImage, %imagePath%
-    ;SetTimer, HideImage, off
-		;Gui, Show
-		}
-		else{
-		; Update the GUI with the selected image and button text
-    GuiControl,, mouseImage, %imagePath%
-		Gui, Show
- 		; Hide the image and text after 2.5 seconds
-    ;SetTimer, HideImage, 2500
-		}
-    }
+	}
 
 
 GuiSize:
@@ -408,16 +370,11 @@ updateOSD(string)
 			{
 				IfWinActive, ahk_class %class%
 					GuiControl,, MyText, %osdText%
-					GuiControl,, mouseImage, %currentMouseImage%
-					;Gui, Show
-					;HideImage() 
-
 			}
+
 		else
 			GuiControl,, MyText, %osdText%
-			;GuiControl,, mouseImage, %idleMouseImage%
-			;Gui, Show
-		SetTimer,unshowOSD,2500
+			SetTimer,unshowOSD,2500
 		
 		
 		return
@@ -428,9 +385,7 @@ updateOSD(string)
 
 hs:
 	GuiControl,, MyText, %A_Space%
-	;if(mouseImage != idleMouseImage){
-	GuiControl,, mouseImage  ; Clear the image from the GUI
-	;}
+	GuiControl,, mouseImage  ; Danish - Clear the image from the GUI
 	
 return
 
