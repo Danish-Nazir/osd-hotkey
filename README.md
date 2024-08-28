@@ -1,3 +1,9 @@
+# The Project is forked
+This is a personal improvement acccording to my setup. 
+I have removed the keycaster and I am working on it to show mouse buttons and their images only.
+This is the original: https://github.com/salvatoreromeo/osd-hotkey
+
+
 # osd-hotkey
 Show which key is pressed when making a screen recording
 
