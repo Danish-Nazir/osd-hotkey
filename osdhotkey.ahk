@@ -228,7 +228,8 @@ return
 	updateOSD(osdText)
 
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 return
 
 
@@ -240,7 +241,8 @@ return
 	updateOSD(osdText)
 
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 return
 
 ~RButton::
@@ -248,7 +250,8 @@ return
 	updateOSD(osdText)
 
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 return
 
 ~*RButton::
@@ -258,7 +261,8 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 	
 return
 
@@ -267,7 +271,8 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 	return
 
 ~*MButton::
@@ -277,7 +282,8 @@ return
 	updateOSD(osdText)
 
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 return
 
 ~WheelUp::
@@ -285,7 +291,8 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 return
 
 ~*WheelUp::
@@ -295,7 +302,8 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 return
 
 ~WheelDown::
@@ -303,7 +311,8 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 return
 ~*WheelDown::
 	IfInString, osdText, MouseWheelDown
@@ -312,7 +321,8 @@ return
 	updateOSD(osdText)
 	
 	mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
-	ChangeMouseImage(mouseImage)
+	;ChangeMouseImage(mouseImage)
+	ShowMouseImage(mouseImage)
 return
 
 
@@ -335,14 +345,14 @@ mouseHolded:
 				osdText=%osdText%(hold)
 			updateOSD(osdText)
 
-			ShowMouseImage()
+			;ShowMouseImage()
 			;Gui, Show
 		}
-		else
-		{
-		GuiControl,, mouseImage, %currentMouseImage%
-		Gui, Show
-		}
+		;else
+		;{
+		;GuiControl,, mouseImage, %currentMouseImage%
+		;Gui, Show
+		;}
 	
 return
 
@@ -352,10 +362,10 @@ ChangeMouseImage(mouseImage){
 
 }
 
-ShowMouseImage(){
+ShowMouseImage(mouseImage){
 	
-	GuiControl,, mouseImage, %currentMouseImage%
-	;Gui, Show
+	GuiControl,, mouseImage, %mouseImage%
+	Gui, Show
 
 }
 
