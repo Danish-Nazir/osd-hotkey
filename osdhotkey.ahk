@@ -20,6 +20,13 @@ font=Arial
 style=bold
 color=black
 
+; Define image paths
+MouseLeft := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_CLick.png"
+MouseRight := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_CLick.png"
+MouseMiddle := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_CLick.png"
+Scroll := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+
+mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Mouse_Idle.png"
 
 IniRead, class, colors.ini, class, c
 
@@ -35,7 +42,12 @@ IniRead, col_t, colors.ini, colors, text, 0000FF
 IniRead, font_t, colors.ini, colors, font, Arial
 IniRead, style_t, colors.ini, colors, style, bold s20
 gui, font,c%col_t% %style_t%, %font_t%
-Gui, Add, Text, vMyText x5 y5 w290
+
+;Gui, Color, EEAA99 150
+Gui, Add, Text, BackgroundTrans vMyText x5 y5 w290
+Gui, Add, Picture, ,mouseImage  ; Image control
+
+
 Gui, -Caption
 Gui, +AlwaysOnTop
 IniRead, x, colors.ini, positions, x, 200 
@@ -46,88 +58,10 @@ IniRead, h, colors.ini, positions, h, 50
 IniRead, unshowTime, colors.ini, times, timeToHide, 2000
 
 
-Gui, show, NA x%x% y%y% w%w% h%h%, OSD hotkey
+;Gui, show, NA x%x% y%y% w%w% h%h%, OSD hotkey
 Gui, +Resize
 
 
-singleHotkey=1234567890qwertyuiopasdfghjklzxcvbnm
-StringSplit, char, singleHotkey
-Loop, %char0%
-	{
-		currentChar := char%A_Index%
-		Hotkey, ~%currentChar%, hks_label
-		Hotkey, ~*%currentChar%, hks_label2
-	}
-numpadHotkey=0123456789
-StringSplit, char, numpadHotkey
-Loop, %char0%
-	{
-		currentChar := char%A_Index%
-		Hotkey, ~NumPad%currentChar%, hk_label
-		Hotkey, ~*NumPad%currentChar%, hk_label2
-	}
-;functionKey
-Loop, 12
-	{
-		Hotkey, ~F%A_Index%, hk_label
-		Hotkey, ~*F%A_Index%, hk_label2
-	}
-
-Hotkey, ~NumpadDel, hk_label
-Hotkey, ~*NumpadDel, hk_label2
-Hotkey, ~NumpadIns, hk_label
-Hotkey, ~*NumpadIns, hk_label2
-Hotkey, ~NumpadClear, hk_label
-Hotkey, ~*NumpadClear, hk_label2
-Hotkey, ~NumpadUp, hk_label
-Hotkey, ~*NumpadUp, hk_label2
-Hotkey, ~NumpadDown, hk_label
-Hotkey, ~*NumpadDown, hk_label2
-Hotkey, ~NumpadLeft, hk_label
-Hotkey, ~*NumpadLeft, hk_label2
-Hotkey, ~NumpadRight, hk_label
-Hotkey, ~*NumpadRight, hk_label2
-Hotkey, ~NumpadHome, hk_label
-Hotkey, ~*NumpadHome, hk_label2
-Hotkey, ~NumpadEnd, hk_label
-Hotkey, ~*NumpadEnd, hk_label2
-Hotkey, ~NumpadPgUp, hk_label
-Hotkey, ~*NumpadPgUp, hk_label2
-Hotkey, ~NumpadPgDn, hk_label
-Hotkey, ~*NumpadPgDn, hk_label2
-Hotkey, ~NumpadDot, hk_label
-Hotkey, ~*NumpadDot, hk_label2
-
-Hotkey, ~Space, hk_space
-Hotkey, ~*Space, hks_label2
-Hotkey, ~Tab, hk_label
-Hotkey, ~*Tab, hk_label2
-Hotkey, ~Enter, hk_label
-Hotkey, ~*Enter, hk_label2
-Hotkey, ~Esc, hk_label
-Hotkey, ~*Esc, hk_label2
-Hotkey, ~Backspace, hk_label
-Hotkey, ~*Backspace, hk_label2
-Hotkey, ~Del, hks_label
-Hotkey, ~*Del, hks_label2
-Hotkey, ~Ins, hk_label
-Hotkey, ~*Ins, hk_label2
-Hotkey, ~Home, hk_label
-Hotkey, ~*Home, hk_label2
-Hotkey, ~End, hk_label
-Hotkey, ~*End, hk_label2
-Hotkey, ~PgUp, hks_label
-Hotkey, ~*PgUp, hks_label2
-Hotkey, ~PgDn, hks_label
-Hotkey, ~*PgDn, hks_label2
-Hotkey, ~Up, hks_label
-Hotkey, ~*Up, hks_label2
-Hotkey, ~Down, hks_label
-Hotkey, ~*Down, hks_label2
-Hotkey, ~Left, hks_label
-Hotkey, ~*Left, hks_label2
-Hotkey, ~Right, hks_label
-Hotkey, ~*Right, hks_label2
 
 Menu,tray,Icon,icons\enable.ico,,1
 Menu, Tray, NoStandard
@@ -278,105 +212,86 @@ RemoveToolTip:
 return
 
 
-~CTRL::
-	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
-		return
-	osdText=CTRL+
-	updateOSD(osdText)
-return
-~ALT::
-	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
-		return
-	osdText=ALT+
-	updateOSD(osdText)
-return
-~LWIN::
-	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
-		return
-	osdText=WIN+
-	updateOSD(osdText)
-return
-~SHIFT::
-	if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
-		return
-	osdText=SHIFT+
-	updateOSD(osdText)
-return
-~*CTRL::
-	IfInString, osdText, CTRL
-		return
-	osdText=%osdText%CTRL+
-	updateOSD(osdText)
-return
-~*ALT::
-	IfInString, osdText, ALT
-		return
-	osdText=%osdText%ALT+
-	updateOSD(osdText)
-return
-~*LWIN::
-	IfInString, osdText, WIN
-		return
-	osdText=%osdText%WIN+
-	updateOSD(osdText)
-return
-~*SHIFT::
-	IfInString, osdText, SHIFT
-		return
-	osdText=%osdText%SHIFT+
-	updateOSD(osdText)
-return
 
 ~LButton::
 	osdText=MouseLeft
 	updateOSD(osdText)
+	ShowImage(MouseLeft)
 return
+
+
+
 ~*LButton::
 	IfInString, osdText, MouseLeft
 		return
 	osdText=%osdText%MouseLeft
 	updateOSD(osdText)
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Left_Click.png"
+	ShowImage(MouseLeft)
 return
+
 ~RButton::
 	osdText=MouseRight
 	updateOSD(osdText)
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
+	ShowImage(MouseRight)
 return
+
 ~*RButton::
 	IfInString, osdText, MouseRight
 		return
 	osdText=%osdText%MouseRight
 	updateOSD(osdText)
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Right_Click.png"
+	ShowImage(MouseRight)
+	
 return
+
 ~MButton::
 	osdText=MouseMiddle
 	updateOSD(osdText)
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
+	ShowImage(MiddleRight)
 return
+
 ~*MButton::
 	IfInString, osdText, MouseMiddle
 		return
 	osdText=%osdText%MouseMiddle
 	updateOSD(osdText)
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Middle_Click.png"
+ShowImage(MiddleRight)
 return
+
 ~WheelUp::
 	osdText=MouseWheelUp
 	updateOSD(osdText)
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+ShowImage(Scroll)
 return
+
 ~*WheelUp::
 	IfInString, osdText, MouseWheelUp
 		return
 	osdText=%osdText%MouseWheelUp
 	updateOSD(osdText)
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+ShowImage(Scroll)
 return
+
 ~WheelDown::
 	osdText=MouseWheelDown
 	updateOSD(osdText)
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+ShowImage(Scroll)
 return
 ~*WheelDown::
 	IfInString, osdText, MouseWheelDown
 		return
 	osdText=%osdText%MouseWheelDown
 	updateOSD(osdText)
-	
+	;mouseImage := "C:\Users\Danish Nazir Arain\Downloads\Mouse Button\New\1x\Scroll.png"
+	ShowImage(Scroll)
 return
 
 mouseHolded:
@@ -385,9 +300,33 @@ mouseHolded:
 			if(!InStr(osdText,"(hold)"))
 				osdText=%osdText%(hold)
 			updateOSD(osdText)
+			SetTimer, HideImage, off
+			Gui, Show
 		}
 	
 return
+
+ShowImage(imagePath) {
+    global
+    if(GetKeyState("LButton", P)=1 or GetKeyState("MButton", P)=1 or GetKeyState("RButton", P)=1)
+		{
+    ; Update the GUI with the selected image and button text
+    GuiControl,, mouseImage, %imagePath%
+    SetTimer, HideImage, off
+		Gui, Show
+		}
+		else{
+		; Update the GUI with the selected image and button text
+    GuiControl,, mouseImage, %imagePath%
+		Gui, Show
+ 		; Hide the image and text after 2.5 seconds
+    SetTimer, HideImage, 1000
+		}
+    }
+
+HideImage() {
+    GuiControl,, mouseImage  ; Clear the image from the GUI
+    }
 
 GuiSize:
 	GuiControl, Move, MyText, % "w" A_GuiWidth - 10
@@ -408,17 +347,24 @@ updateOSD(string)
 			{
 				IfWinActive, ahk_class %class%
 					GuiControl,, MyText, %osdText%
+					GuiControl,, MyImage, %imagePath%
+					HideImage() 
+
 			}
 		else
 			GuiControl,, MyText, %osdText%
-		;SetTimer,unshowOSD,2500
+		SetTimer,unshowOSD,2500
+		
 		
 		return
 	}
 
+	
+
 
 hs:
 	GuiControl,, MyText, %A_Space%
+	GuiControl,, MyImage  ; Clear the image from the GUI
 return
 
 
