@@ -221,7 +221,7 @@ return
 																			;--------------MOUSE BUTTON PRESS FUNCTIONS--------------------
 
 
-~LButton::
+~*LButton::
 	osdText=MouseLeft
 	updateOSD(osdText)
 
@@ -229,17 +229,9 @@ return
 	ShowMouseImage(mouseImage)
 return
 
-~*LButton::
-	IfInString, osdText, MouseLeft
-		return
-	osdText=%osdText%MouseLeft
-	updateOSD(osdText)
 
-	mouseImage := A_ScriptDir . "\icons\Left_Click.png"
-	ShowMouseImage(mouseImage)
-return
 
-~RButton::
+~*RButton::
 	osdText=MouseRight
 	updateOSD(osdText)
 
@@ -247,17 +239,9 @@ return
 	ShowMouseImage(mouseImage)
 return
 
-~*RButton::
-	IfInString, osdText, MouseRight
-		return
-	osdText=%osdText%MouseRight
-	updateOSD(osdText)
-	
-	mouseImage := A_ScriptDir . "\icons\Right_Click.png"
-	ShowMouseImage(mouseImage)
-return
 
-~MButton::
+
+~*MButton::
 	osdText=MouseMiddle
 	updateOSD(osdText)
 	
@@ -265,17 +249,9 @@ return
 	ShowMouseImage(mouseImage)
 return
 
-~*MButton::
-	IfInString, osdText, MouseMiddle
-		return
-	osdText=%osdText%MouseMiddle
-	updateOSD(osdText)
 
-	mouseImage := A_ScriptDir . "\icons\Middle_Click.png"
-	ShowMouseImage(mouseImage)
-return
 
-~WheelUp::
+~*WheelUp::
 	osdText=MouseWheelUp
 	updateOSD(osdText)
 	
@@ -283,17 +259,8 @@ return
 	ShowMouseImage(mouseImage)
 return
 
-~*WheelUp::
-	IfInString, osdText, MouseWheelUp
-		return
-	osdText=%osdText%MouseWheelUp
-	updateOSD(osdText)
-	
-	mouseImage := A_ScriptDir . "\icons\Scroll_Up.png"
-	ShowMouseImage(mouseImage)
-return
 
-~WheelDown::
+~*WheelDown::
 	osdText=MouseWheelDown
 	updateOSD(osdText)
 	
@@ -301,15 +268,7 @@ return
 	ShowMouseImage(mouseImage)
 return
 
-~*WheelDown::
-	IfInString, osdText, MouseWheelDown
-		return
-	osdText=%osdText%MouseWheelDown
-	updateOSD(osdText)
-	
-	mouseImage := A_ScriptDir . "\icons\Scroll_Down.png"
-	ShowMouseImage(mouseImage)
-return
+
 
 
 
@@ -393,45 +352,7 @@ unshowOSD:
 	Gui, Hide
 return
 
-hk_space:
-	if(A_TimeSincePriorHotkey>1000)
-		osdText=Space
-	else
-		osdText=%osdText%_
-return
 
-hk_label:
-	StringTrimLeft, thisHotkey, A_ThisHotkey, 1 ; remove ~
-	if(A_TimeSincePriorHotkey>1000)
-			osdText=%thisHotkey%
-	else
-		osdText=%thisHotkey%
-	updateOSD(osdText)
-return
-hk_label2:
-	StringTrimLeft, thisHotkey, A_ThisHotkey, 2 ; remove ~*
-	if(A_TimeSincePriorHotkey>1000)
-		osdText=%thisHotkey%
-	else
-		osdText=%thisHotkey%
-	updateOSD(osdText)
-return
-hks_label:
-	StringTrimLeft, thisHotkey, A_ThisHotkey, 1 ; remove ~
-	if(A_TimeSincePriorHotkey>1000)
-			osdText=%thisHotkey%
-	else
-		osdText=%osdText%%thisHotkey%
-	updateOSD(osdText)
-return
-hks_label2:
-	StringTrimLeft, thisHotkey, A_ThisHotkey, 2 ; remove ~*
-	if(A_TimeSincePriorHotkey>1000)
-		osdText=%thisHotkey%
-	else
-		osdText=%osdText%%thisHotkey%
-	updateOSD(osdText)
-return
 
 GuiClose:
 ExitApp
