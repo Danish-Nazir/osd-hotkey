@@ -38,9 +38,9 @@ FileInstall, disable.ico, icons\disable.ico
 Gui, +Owner  ; +Owner prevents a taskbar button from appearing.
 ;IniRead, col_b, colors.ini, colors, background, FFFFFF
 ;Gui, Color, %col_b%
-IniRead, col_t, colors.ini, colors, text, 0000FF
+IniRead, col_t, colors.ini, colors, text, F0F0F0
 IniRead, font_t, colors.ini, colors, font, Arial
-IniRead, style_t, colors.ini, colors, style, bold s20
+IniRead, style_t, colors.ini, colors, style, bold s14
 gui, font,c%col_t% %style_t%, %font_t%
 
 Gui, Color, #FFFFFF
@@ -72,12 +72,11 @@ IniRead, h, colors.ini, positions, h, 350
 IniRead, unshowTime, colors.ini, times, timeToHide, 2000
 
 
-Gui, Show, x10 y700 w300 h150, OSD hotkey
+Gui, Show, x10 y700 w400 h150, OSD hotkey
 ;Gui, +Resize
 
 
-; Close the script with the Escape key
-Esc::ExitApp
+
 
 
 
@@ -370,7 +369,8 @@ unshowOSD:
 	Gui, Hide
 return
 
-
+; Close the script with the Escape key
+Esc::ExitApp
 
 GuiClose:
 ExitApp
