@@ -36,20 +36,34 @@ FileInstall, enable.ico, icons\enable.ico
 FileInstall, disable.ico, icons\disable.ico
 
 Gui, +Owner  ; +Owner prevents a taskbar button from appearing.
-IniRead, col_b, colors.ini, colors, background, FFFF00
-Gui, Color, %col_b%
+;IniRead, col_b, colors.ini, colors, background, FFFFFF
+;Gui, Color, %col_b%
 IniRead, col_t, colors.ini, colors, text, 0000FF
 IniRead, font_t, colors.ini, colors, font, Arial
 IniRead, style_t, colors.ini, colors, style, bold s20
 gui, font,c%col_t% %style_t%, %font_t%
 
-;Gui, Color, EEAA99 150
+Gui, Color, #FFFFFF
+
+
+
+
+
+;backgroundColor := "FFAAAA"
+;Gui, Color, %backgroundColor%
+;Gui, +LastFound +E0x20
+;WinSet, TransColor, %backgroundColor% 150
+
+;Make the background Transparent
 Gui, Add, Text, BackgroundTrans vMyText x5 y5 w290
 Gui, Add, Picture, ,mouseImage  ; Image control ; Danish - gui add picture
 
-
+Gui +LastFound +AlwaysOnTop +ToolWindow
+WinSet, TransColor, #FFFFFF
 Gui, -Caption
-Gui, +AlwaysOnTop
+;Gui, +AlwaysOnTop
+
+
 IniRead, x, colors.ini, positions, x, 200 
 IniRead, y, colors.ini, positions, y, 200
 IniRead, w, colors.ini, positions, w, 300
@@ -58,8 +72,12 @@ IniRead, h, colors.ini, positions, h, 350
 IniRead, unshowTime, colors.ini, times, timeToHide, 2000
 
 
-;Gui, show, NA x%x% y%y% w%w% h%h%, OSD hotkey
-Gui, +Resize
+Gui, Show, x10 y700 w300 h150, OSD hotkey
+;Gui, +Resize
+
+
+; Close the script with the Escape key
+Esc::ExitApp
 
 
 
